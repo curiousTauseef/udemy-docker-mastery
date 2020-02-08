@@ -1,0 +1,35 @@
+Note  :  multiple images of same library can point same image ID
+image history
+
+- Get new Image
+docker pull ubuntu:18.04
+
+- Look at history of image
+docker history ubuntu:14.04
+
+- stop at layers of image it has gone through
+docker image inspect nginx
+
+- Change repo name or image name of existing image
+docker image tag nginx vijaypawar/nginx  // here vijaypawar/nginx is repo Or image name
+
+- Change tag name of existing image
+docker image tag nginx vijaypawar/nginx:testing // here testing is tag name
+
+- Push chanegs to docker hub
+docker image push vijaypawar/nginx:development
+
+- Check file where login key is saved 
+cat .docker/config.json   // here docker key is saved, so you better logout when done
+
+- Build Image from Dccker file in current folder
+docker image build -t yo_image_name . // Dot in end is important
+
+- Build Image from Dccker file in another folder
+docker image build -f file_name_from_another_path -t yo_image_name . // -f command
+
+- Keep Least Changing things on top , Frequent On bottom
+Eg - Changing url  // Because if u build image 2nd time , it tries to use catche, and if it finds any change on a particular line, then from that line it executes that line instead of using CACHED STUFF
+
+
+

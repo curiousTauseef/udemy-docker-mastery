@@ -1,0 +1,25 @@
+Container Commands
+- start existing container
+docker container start namemysql
+
+- stop existing container
+docker container stop namemysql
+
+- show ports forwarding from (host or local) machine to container
+docker container port namemysql
+
+- get ip address of container 
+docker container inspect --format '{{ .NetworkSettings.IPAddress }}' namemysql
+
+- One container can talk to another container without '--publish 80:80' settings if in same network .And that is By container namemysql
+- One container can talk to another container if in custom network
+- One container cannot talk to another container if in defaut network
+- Ping one container to container
+- Note in below code 'apt-get update Then apt-get install iputils-ping' needs to be installed in both container
+docker container exec -it namemysql ping namehttpd   // Well these both containers are on custom network
+
+- How to bash container without "running as demon" OR "starting" it
+docker container run --rm -it node bash    // --rm means clean after exit
+
+
+

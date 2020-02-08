@@ -1,0 +1,62 @@
+1 - Image is code
+    App binaries and dependencies
+    Meta data about image data on how to run image
+    Its not OS, Kernel, Drivers
+2 - Container is actual running instance of that code
+3 - docker container run --publish 8888:80 nginx   
+    Desc - 
+    Right 80 is port exposed on container
+    Left 8888 is port of users local machine
+    Since nginx defaults to port 80 thats y we took 80 on Right Side
+    So when you open localhost:8888 at this time traffic from users local machine is routed to container
+
+
+
+Command List
+--detach
+--name hello
+--pubish 2121:80
+top  //For Latest log Or Info
+
+
+
+
+Test 1
+docker container run --name namenginx --publish 80:80 --detach nginx
+docker container run --name namehttpd --publish 8080:80 --detach httpd
+docker container run --name namemysql --env MYSQL_RANDOM_ROOT_PASSWORD=yes --publish 3306:3306 --detach mysql
+
+Test 2
+docker container top namenginx
+docker container inspect namenginx
+docker container stats namenginx
+
+Notes
+Get into existing stopped container
+Code - docker container run -it namemysql  // T = tty terninal, i = keep session open
+
+Get into existing running container
+Code - docker container exec -it namemysql bash
+
+To create new container on newly created image
+code - docker container run -p 80:80 image_name
+
+To create new container on newly created image & you dont want for longer time
+code - docker container run -p 80:80 --rm  image_name
+
+To re run stopped container
+Code - docker container start namemysql
+
+To re run stopped container with latest output
+Code - docker container start -ai namemysql  // A = attach,i = interactive
+
+Get into terminal of non existing container by downlaoding and getting into it
+Code - docker container run -it --name namenginx nginx bash  // Or you can use 'sh'
+// 'bash' is a startup command ...
+// 'sh' is another startup command ...
+// well if you dont assign then library or package assigns it by self whatever default
+
+
+
+
+
